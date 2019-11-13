@@ -69,7 +69,7 @@ app.get('/', function(req, res) {
 app.get('/couchbase/:id', function(req, res) {
     var response = [];
     var id = req.params.id;
-    var query_string = "SELECT count(*) as count FROM` +" bucketName +" WHERE type = 'statHit' and objectType = 'hotel-vst' and  objectID = $1";
+    var query_string = "SELECT count(*) as count FROM "+ bucketName +" WHERE type = 'statHit' and objectType = 'hotel-vst' and  objectID = $1";
     console.log('id', id);
     bucket.query(couchbase.N1qlQuery.fromString(query_string), [id], (error, rows) => {
 
