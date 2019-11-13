@@ -59,9 +59,11 @@ var N1qlQuery = couchbase.N1qlQuery;
 
 
 app.get('/', function(req, res) {
+    const pod = process.env.HOSTNAME;	  
     return res.status(200).json({
                     ok: false,
                     team: threats,
+	            pod,
                     request: req.url
                 });
 });
@@ -79,10 +81,13 @@ app.get('/couchbase/:id', function(req, res) {
         error
       })
     }
+	   
+     const pod = process.env.HOSTNAME;	    
      let count = rows[0].count;
      return res.status(200).json({
                     ok: true,
                     count,
+	            pod, 
                     request: req.url
                });
       
